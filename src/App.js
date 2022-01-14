@@ -54,7 +54,7 @@ class App extends React.Component {
         <React.Fragment>
             <div  id='article' onClick={()=>handleClick()}>
                 <span className={'ajout'+id} id={'ajout'}>Ajouté</span>
-                <span id='prix'>{price} $</span>
+                <span id='prix'>{price} €</span>
                 <p>{name}</p>
             </div>
         </React.Fragment>
@@ -89,7 +89,7 @@ class App extends React.Component {
     <div className='main'>
       {this.Articles()}
     </div>
-    <div id='payment'><span>Total</span>{sum} $</div>
+    <div id='payment'><span>Total</span>{sum} €</div>
 
     </div>
   )
