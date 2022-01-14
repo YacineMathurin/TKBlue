@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import Grid from '@mui/material/Grid';
+import * as Const from "./Constants";
 import './App.css';
 
 class App extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      selected:[], 
-      data:[],
-      sum:0
+      selected: [], 
+      data: [],
+      sum: 0
     }
   }
 
   componentDidMount() {
-    fetch("https://dockeryhadev.emissions-calculator.com/api/test/options")
+    fetch(Const.URL_GET_PRODUCTS)
     .then(res => res.json())
     .then(data => {
       console.log(data);
