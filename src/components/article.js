@@ -1,21 +1,18 @@
 import React from 'react';
 
-function Article() {
+function Article({id, price, name, onHandleClick, articleSelected}) {
     const ref = React.useRef(null);
 
-    const handleClick = () => {
-        const spanAjout = ref.current; // corresponding DOM node
-        spanAjout.style.top="0";
-    }
-    return ( 
+    
+    return (
         <React.Fragment>
-            <div  id='article' onClick={()=>handleClick()}>
-                <span ref={ref} id='ajout'>Ajouté</span>
-                <span id='prix'>225 $</span>
-                <p>Aide à l'utilisation du calculateur GCI</p>
+            <div  id='article' onClick={()=> onHandleClick(id, price)}>
+                <span style={{top: !articleSelected ? "-40px":"0"}} className={'ajout'+id} id={'ajout'}>Ajouté</span>
+                <span id='prix'>{price} €</span>
+                <p>{name}</p>
             </div>
         </React.Fragment>
-     );
+    );
 }
  
 export default Article;

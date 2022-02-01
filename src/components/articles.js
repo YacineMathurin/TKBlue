@@ -1,9 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Article from './article';
 import Grid from '@mui/material/Grid';
 
 
-const Articles = () => {
+const Articles = ({data, onSum}) => {
+    const ref = React.useRef(null);
+    const [selected, setSelected] = useState([]);
+    const [articleSelected, setArticleSelected] = useState([]);
+
+    const sumUp = (boughtArticles) => {
+        var result = 0;
+        boughtArticles.map(item => result += item.price);
+        console.log("Sum", result);
+        onSum(result);
+    }
+
+    const handleClick = (id, price) => {
+        console.log("selected",selected);
+        var fakeSelected = selected;
+        var res = selected.filter(item => item.id === id);
+        console.log("Res",res);
+        if(res.length === 0) {
+          fakeSelected.push({id, price});
+          setSelected(fakeSelected);
+        //   this.setState({selected:fakeSelected}, () => this.sumUp())
+          sumUp(fakeSelected);
+          return setArticleSelected({...articleSelected, ["articleSelected"+id]: true});
+        }
+        fakeSelected = selected.filter(item => item.id !== id);
+        console.log(fakeSelected, selected);
+        setArticleSelected({...articleSelected, ["articleSelected"+id]: false});
+        setSelected(fakeSelected);
+        sumUp(fakeSelected);
+        // this.setState({selected:fakeSelected}, () => this.sumUp())
+    }
     return ( 
         <React.Fragment>
             <h3 id='articles-services'><span>Nos</span> services</h3>
@@ -11,24 +41,14 @@ const Articles = () => {
                 <p id='articles-bar'></p>
             </center>
             <Grid container spacing={2} style={{display:"flex", justifyContent:"center"}}>
-                <Grid item xs={12} md={4} xl={4}>
-                    <Article></Article>
-                </Grid>
-                <Grid item xs={12} md={4} xl={4}>
-                    <Article></Article>
-                </Grid>
-                <Grid item xs={12} md={4} xl={4}>
-                    <Article></Article>
-                </Grid>
-                <Grid item xs={12} md={4} xl={4}>
-                    <Article></Article>
-                </Grid>
-                <Grid item xs={12} md={4} xl={4}>
-                    <Article></Article>
-                </Grid>
+                {data.map(({id, name, price}, index) => (
+                  <Grid key={index} item xs={12} md={4} xl={4}>
+                      <Article id={id} name={name} price={parseFloat(price)} onHandleClick={handleClick} articleSelected={articleSelected["articleSelected" + id]}></Article>
+                  </Grid>
+                ))}
             </Grid>
         </React.Fragment>
-     );
+    )
 }
  
 export default Articles;

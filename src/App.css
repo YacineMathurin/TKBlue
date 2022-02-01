@@ -55,6 +55,11 @@
   /* color: #ff4a57; */
   font-weight: bold;
 }
+#payment #price {
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+}
 header {
   /* margin-bottom: 5em; */
 }
@@ -130,6 +135,7 @@ header h3 {
   margin-bottom: 3em;
 }
 #articles-services {
+  text-align: center;
   text-transform: uppercase;
   color: gold;
 }
