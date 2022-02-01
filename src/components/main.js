@@ -3,10 +3,10 @@ import Grid from '@mui/material/Grid';
 import * as Const from "../Constants";
 import '../App.css';
 import Articles from './articles';
+import Payment from './Payment';
 
 const Main = () => {
     const [data, setData] = useState([]);
-    const [sum, setSum] = useState(0);
 
     useEffect(() => {
         fetch(Const.URL_GET_PRODUCTS)
@@ -20,8 +20,8 @@ const Main = () => {
 
     return (
         <Fragment>
-            <Articles data={data} onSum={setSum}></Articles>
-            <div id='payment'><span>Total</span><span id="price">{sum} €</span></div>
+            <Articles data={data}></Articles>
+            <Payment></Payment>
         </Fragment>
      );
 }

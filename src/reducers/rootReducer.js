@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import routeCaptain from "./routeCaptain";
+import articlesRouteManager from "./articlesRouteManager";
 
 const rootReducer = combineReducers({
-  route: routeCaptain,
+  articles: articlesRouteManager,
 });
 
 export default rootReducer;

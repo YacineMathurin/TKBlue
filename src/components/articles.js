@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import Article from './article';
 import Grid from '@mui/material/Grid';
+import { useSelector, useDispatch } from 'react-redux';
 
 
-const Articles = ({data, onSum}) => {
+const Articles = ({data}) => {
     const ref = React.useRef(null);
     const [selected, setSelected] = useState([]);
     const [articleSelected, setArticleSelected] = useState([]);
-
+    const counter = useSelector((state) => console.log("Redux state", state.articles.sum));
+    const dispatch = useDispatch();
     const sumUp = (boughtArticles) => {
+
         var result = 0;
         boughtArticles.map(item => result += item.price);
         console.log("Sum", result);
-        onSum(result);
+        dispatch({ type: 'SUM', action: result });
+        // onSum(result);
     }
 
     const handleClick = (id, price) => {
