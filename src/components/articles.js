@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Article from './article';
 import Grid from '@mui/material/Grid';
 import { useSelector, useDispatch } from 'react-redux';
+import { setSum } from '../actions';
 
 
 const Articles = ({data}) => {
@@ -15,7 +16,8 @@ const Articles = ({data}) => {
         var result = 0;
         boughtArticles.map(item => result += item.price);
         console.log("Sum", result);
-        dispatch({ type: 'SUM', action: result });
+        dispatch(setSum(result));
+        // dispatch({ type: 'SUM', action: result });
         // onSum(result);
     }
 
@@ -51,6 +53,7 @@ const Articles = ({data}) => {
                   </Grid>
                 ))}
             </Grid>
+            <div id="spacer"></div>
         </React.Fragment>
     )
 }
